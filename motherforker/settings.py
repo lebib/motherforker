@@ -25,7 +25,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = []
-
+INTERNAL_IPS = ['82.216.164.26', '127.0.0.1']
 
 # Application definition
 
@@ -36,6 +36,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
+    'lacave',
+    'debug_toolbar',
 )
 
 MIDDLEWARE_CLASSES = (
