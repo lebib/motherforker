@@ -1,0 +1,9 @@
+django
+nose
+coverage
+psycopg2
+jinja2
+djang_extensions
+django-nose
+django-debug-toolbar
+werkzeug
