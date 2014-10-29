@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from .models import Location, Type, Item
+
+
+admin.register(Location)
+admin.register(Type)
+admin.register(Item)
