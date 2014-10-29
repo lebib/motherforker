@@ -7,3 +7,4 @@ django_extensions
 django-nose
 django-debug-toolbar
 werkzeug
+django-mptt
