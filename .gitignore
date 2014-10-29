@@ -55,3 +55,6 @@ target/
 
 # Django database
 db.sqlite3
+
+*.swp
+.ropeproject
