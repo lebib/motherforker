@@ -6,8 +6,24 @@ from mptt.models import MPTTModel, TreeForeignKey
 NULLABLE = {"blank": True, "null": True}
 
 
-class Location(MPTTModel):
+class Named(models.Model):
     name = models.CharField(max_length=50, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        abstract = True
+
+
+class Described(models.Model):
+    description = models.TextField(**NULLABLE)
+
+    class Meta:
+        abstract = True
+
+
+class Location(Named, Described, MPTTModel):
     parent = TreeForeignKey('self', related_name='children',
                             **NULLABLE)
     user = models.ForeignKey(settings.AUTH_USER_MODEL,
@@ -17,9 +33,7 @@ class Location(MPTTModel):
         order_insertion_by = ['name']
 
 
-class Type(MPTTModel):
-    name = models.CharField(max_length=50, unique=True)
-    description = models.TextField(**NULLABLE)
+class Type(Named, Described, MPTTModel):
     parent = TreeForeignKey('self', related_name='children',
                             **NULLABLE)
 
@@ -27,9 +41,7 @@ class Type(MPTTModel):
         order_insertion_by = ['name']
 
 
-class Item(models.Model):
-    name = models.CharField(max_length=50, unique=True)
-    description = models.TextField(**NULLABLE)
+class Item(Named, Described, models.Model):
     location = models.ForeignKey(Location,
                                  **NULLABLE)
     type = models.ForeignKey(Type,
